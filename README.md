@@ -20,12 +20,12 @@ This project is a **Flask-based web application** that predicts cancer risk leve
 
 ## 📂 Project Structure
 
-├── cancer.csv # Dataset file
-├── app.py # Main Flask application
-├── templates/
-│ └── index.html # Frontend template
-├── static/ # (Optional) for CSS/JS files
-└── README.md # Project documentation
+- ├── cancer.csv # Dataset file
+- ├── app.py # Main Flask application
+- ├── templates/
+- │ └── index.html # Frontend template
+- ├── static/ # (Optional) for CSS/JS files
+- └── README.md # Project documentation
 
 ## Run the Flask app
 python app.py
