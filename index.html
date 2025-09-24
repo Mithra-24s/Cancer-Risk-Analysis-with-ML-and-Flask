@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cancer Risk Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: linear-gradient(135deg, #6e7dff, #c800ff); /* Added linear gradient */
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      font-size: 1.1em;
+      margin-top: 10px;
+      display: block;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-size: 1.1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    .result p {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cancer Risk Prediction</h1>
+    <form action="/predict" method="POST">
+      <label for="air_pollution">Air Pollution:</label>
+      <input type="number" id="air_pollution" name="air_pollution" step="any" required />
+
+      <label for="genetic_risk">Genetic Risk:</label>
+      <input type="number" id="genetic_risk" name="genetic_risk" step="any" required />
+
+      <label for="obesity">Obesity:</label>
+      <input type="number" id="obesity" name="obesity" step="any" required />
+
+      <label for="balanced_diet">Balanced Diet:</label>
+      <input type="number" id="balanced_diet" name="balanced_diet" step="any" required />
+
+      <label for="occupational_hazards">Occupational Hazards:</label>
+      <input type="number" id="occupational_hazards" name="occupational_hazards" step="any" required />
+
+      <label for="coughing_of_blood">Coughing of Blood:</label>
+      <input type="number" id="coughing_of_blood" name="coughing_of_blood" step="any" required />
+
+      <button type="submit">Predict Risk Level</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+      <p>Predicted Risk Level: {{ result.predicted_class }}</p>
+      <p>Prediction Probabilities:</p>
+      <ul>
+        {% for class, prob in result.predicted_probability.items() %}
+          <li>{{ class }}: {{ prob | round(4) }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
